@@ -215,6 +215,16 @@ class ClockState:
         self.switches = []
         self.last_update = None
         
+        # Add these fields for mid and fourth point tracking
+        self.mid_point_time_a = 0.0  # Allies hold time (seconds, index 2)
+        self.mid_point_time_b = 0.0  # Axis hold time (seconds, index 2)
+        self.fourth_point_time_a = 0.0  # Allies hold time (seconds, index 3)
+        self.fourth_point_time_b = 0.0  # Axis hold time (seconds, index 3)
+        self.mid_point_owner = None
+        self.fourth_point_owner = None
+        self.mid_point_last_switch = None
+        self.fourth_point_last_switch = None
+        
         logger.info("ClockState initialized with time_a=0.0, time_b=0.0")
 
     def get_time_remaining(self):
@@ -511,6 +521,21 @@ class ClockState:
             
         return str(datetime.timedelta(seconds=secs))
 
+    def get_mid_point_minutes(self):
+        """Return points for mid point hold time (1pt per minute)"""
+        a_pts = int(self.mid_point_time_a // 60)
+        b_pts = int(self.mid_point_time_b // 60)
+        return a_pts, b_pts
+
+    def get_bonus_points(self):
+        """Return bonus points for holding both mid and fourth points (1.5/min)"""
+        # Find overlap time (minimum of both hold times for each team)
+        a_overlap = min(self.mid_point_time_a, self.fourth_point_time_a)
+        b_overlap = min(self.mid_point_time_b, self.fourth_point_time_b)
+        a_bonus = int(a_overlap // 60 * 1.5)
+        b_bonus = int(b_overlap // 60 * 1.5)
+        return a_bonus, b_bonus
+
 def user_is_admin(interaction: discord.Interaction):
     admin_role = os.getenv('ADMIN_ROLE_NAME', 'admin').lower()
     return any(role.name.lower() == admin_role for role in interaction.user.roles)
@@ -557,6 +582,20 @@ def build_embed(clock: ClockState):
     embed.add_field(name="🇺🇸 Allies", value=allies_value, inline=False)
     embed.add_field(name="🇩🇪 Axis", value=axis_value, inline=False)
     
+    # --- Add live mid point and bonus points ---
+    a_pts, b_pts = clock.get_mid_point_minutes()
+    a_bonus, b_bonus = clock.get_bonus_points()
+    embed.add_field(
+        name="🏅 Mid Point Hold Points (Live)",
+        value=f"🇺🇸 Allies: `{a_pts}` pts\n🇩🇪 Axis: `{b_pts}` pts",
+        inline=False
+    )
+    embed.add_field(
+        name="🏅 Bonus Points (Hold 3rd & 4th, Live)",
+        value=f"🇺🇸 Allies: `{a_bonus}` pts\n🇩🇪 Axis: `{b_bonus}` pts",
+        inline=False
+    )
+
     # Add current leader status
     if allies_status['total_time'] > axis_status['total_time']:
         leader_text = "🏆 **Current Leader:** Allies"
@@ -1414,3 +1453,24 @@ if __name__ == "__main__":
     except Exception as e:
         logger.error(f"Failed to start bot: {e}")
         print(f"❌ Bot startup failed: {e}")
+
+# This is a helper function for testing, not a Discord slash command.
+async def run_simulation_series(interaction):
+    """Run 10 point control simulations for testing."""
+    simulations = [
+        ("A", "A", 600, 600),
+        ("A", "B", 600, 600),
+        ("B", "A", 600, 600),
+        ("B", "B", 600, 600),
+        ("A", "A", 1200, 300),
+        ("A", "B", 300, 1200),
+        ("B", "A", 1200, 300),
+        ("B", "B", 300, 1200),
+        ("A", "A", 1800, 1800),
+        ("B", "B", 1800, 1800),
+    ]
+    results = []
+    for idx, (mid_owner, fourth_owner, mid_secs, fourth_secs) in enumerate(simulations, 1):
+        await simulate_points(interaction, mid_owner, fourth_owner, mid_secs, fourth_secs)
+        results.append(f"Simulation {idx}: Mid={mid_owner}({mid_secs}s), Fourth={fourth_owner}({fourth_secs}s)")
+    await interaction.followup.send("\n".join(results), ephemeral=True)
