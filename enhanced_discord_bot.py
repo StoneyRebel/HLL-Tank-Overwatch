@@ -1474,3 +1474,62 @@ async def run_simulation_series(interaction):
         await simulate_points(interaction, mid_owner, fourth_owner, mid_secs, fourth_secs)
         results.append(f"Simulation {idx}: Mid={mid_owner}({mid_secs}s), Fourth={fourth_owner}({fourth_secs}s)")
     await interaction.followup.send("\n".join(results), ephemeral=True)
+
+@bot.tree.command(name="simulate_points", description="Simulate CRCON point control for testing (admin only)")
+async def simulate_points(
+    interaction: discord.Interaction,
+    mid_owner: str,
+    fourth_owner: str,
+    mid_secs: int = 300,
+    fourth_secs: int = 180
+):
+    """
+    Simulate CRCON data for mid and fourth point control.
+    mid_owner/fourth_owner: 'A' for Allies, 'B' for Axis
+    mid_secs/fourth_secs: seconds held by each team
+    """
+    if not user_is_admin(interaction):
+        return await interaction.response.send_message("❌ Admin role required.", ephemeral=True)
+
+    # Find an active clock
+    active_clock = None
+    for clock in clocks.values():
+        if clock.started:
+            active_clock = clock
+            break
+
+    if not active_clock:
+        return await interaction.response.send_message("❌ No active match found. Start a match first with /reverse_clock", ephemeral=True)
+
+    # Simulate hold times
+    if mid_owner == "A":
+        active_clock.mid_point_time_a = mid_secs
+        active_clock.mid_point_time_b = 0
+        active_clock.mid_point_owner = "A"
+    else:
+        active_clock.mid_point_time_b = mid_secs
+        active_clock.mid_point_time_a = 0
+        active_clock.mid_point_owner = "B"
+
+    if fourth_owner == "A":
+        active_clock.fourth_point_time_a = fourth_secs
+        active_clock.fourth_point_time_b = 0
+        active_clock.fourth_point_owner = "A"
+    else:
+        active_clock.fourth_point_time_b = fourth_secs
+        active_clock.fourth_point_time_a = 0
+        active_clock.fourth_point_owner = "B"
+
+    # Update the embed
+    await active_clock.message.edit(embed=build_embed(active_clock))
+    await interaction.response.send_message(
+        f"✅ Simulated: Mid ({mid_owner}) {mid_secs}s, Fourth ({fourth_owner}) {fourth_secs}s",
+        ephemeral=True
+    )
+
+@bot.tree.command(name="simulate_all", description="Run 10 point control simulations for testing (admin only)")
+async def simulate_all(interaction: discord.Interaction):
+    if not user_is_admin(interaction):
+        return await interaction.response.send_message("❌ Admin role required.", ephemeral=True)
+    await interaction.response.send_message("🧪 Running 10 simulations...", ephemeral=True)
+    await run_simulation_series(interaction)
