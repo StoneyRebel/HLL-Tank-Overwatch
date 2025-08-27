@@ -665,7 +665,7 @@ async def server_info(interaction: discord.Interaction):
                 time_remaining = game_state['time_remaining']
                 embed.add_field(name="⏱️ Game Time", value=f"{time_remaining//60}:{time_remaining%60:02d}", inline=True)
             
-            embed.timestamp = datetime.datetime.now(timezone.utc
+            embed.timestamp = datetime.datetime.now(timezone.utc)
             await interaction.edit_original_response(content="", embed=embed)
             
     except Exception as e:
