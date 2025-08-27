@@ -44,6 +44,58 @@ KILLFEED_CHANNEL_ID = int(os.getenv('KILLFEED_CHANNEL_ID', '0')) if os.getenv('K
 KILLFEED_SERVER_URL = os.getenv('KILLFEED_SERVER_URL', 'http://localhost:3000')
 
 kill_feed_client = KillFeedClient(KILLFEED_SERVER_URL) if KILLFEED_ENABLED else None
+class ClockState:
+    """
+    Tracks match timing, control times, CRCON integration, and game state.
+    Add all necessary attributes and methods here.
+    """
+    def __init__(self):
+        self.time_a = 0
+        self.time_b = 0
+        self.active = None
+        self.last_switch = None
+        self.started = False
+        self.clock_started = False
+        self.switches = []
+        self.message = None
+        self.crcon_client = None
+        self.auto_switch = False
+        self.match_start_time = datetime.datetime.now(timezone.utc)
+        self.mid_point_time_a = 0
+        self.mid_point_time_b = 0
+        self.fourth_point_time_a = 0
+        self.fourth_point_time_b = 0
+        self.mid_point_owner = None
+        self.fourth_point_owner = None
+        # Add other attributes as needed
+
+    def format_time(self, seconds):
+        return str(datetime.timedelta(seconds=int(seconds)))
+
+    def total_time(self, team):
+        if team == "A":
+            return self.time_a
+        elif team == "B":
+            return self.time_b
+        return 0
+
+    def get_game_info(self):
+        return {
+            "map": "Unknown",
+            "players": 0,
+            "connection_status": "Disconnected",
+            "last_update": "N/A",
+            "game_time": 0
+        }
+
+    async def update_from_game(self):
+        pass
+
+    async def connect_crcon(self):
+        return False
+
+    def get_current_elapsed(self):
+        return 0
 
 class APIKeyCRCONClient:
     """CRCON client using API key authentication"""
@@ -988,55 +1040,4 @@ async def simulate_all(interaction: discord.Interaction):
     await interaction.response.send_message("🧪 Running 10 simulations...", ephemeral=True)
     await run_simulation_series(interaction)
 
-class ClockState:
-    """
-    Tracks match timing, control times, CRCON integration, and game state.
-    Add all necessary attributes and methods here.
-    """
-    def __init__(self):
-        self.time_a = 0
-        self.time_b = 0
-        self.active = None
-        self.last_switch = None
-        self.started = False
-        self.clock_started = False
-        self.switches = []
-        self.message = None
-        self.crcon_client = None
-        self.auto_switch = False
-        self.match_start_time = datetime.datetime.now(timezone.utc)
-        self.mid_point_time_a = 0
-        self.mid_point_time_b = 0
-        self.fourth_point_time_a = 0
-        self.fourth_point_time_b = 0
-        self.mid_point_owner = None
-        self.fourth_point_owner = None
-        # Add other attributes as needed
 
-    def format_time(self, seconds):
-        return str(datetime.timedelta(seconds=int(seconds)))
-
-    def total_time(self, team):
-        if team == "A":
-            return self.time_a
-        elif team == "B":
-            return self.time_b
-        return 0
-
-    def get_game_info(self):
-        return {
-            "map": "Unknown",
-            "players": 0,
-            "connection_status": "Disconnected",
-            "last_update": "N/A",
-            "game_time": 0
-        }
-
-    async def update_from_game(self):
-        pass
-
-    async def connect_crcon(self):
-        return False
-
-    def get_current_elapsed(self):
-        return 0
