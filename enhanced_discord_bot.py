@@ -143,7 +143,20 @@ class APIKeyCRCONClient:
     async def __aexit__(self, exc_type, exc_val, exc_tb):
         if self.session:
             await self.session.close()
+class StartControls(discord.ui.View):
+    """View for starting the match clock."""
+    def __init__(self, channel_id):
+        super().__init__(timeout=None)
+        self.channel_id = channel_id
 
+    @discord.ui.button(label="▶️ Start Match", style=discord.ButtonStyle.success)
+    async def start_match(self, interaction: discord.Interaction, button: discord.ui.Button):
+        clock = clocks[self.channel_id]
+        clock.started = True
+        clock.match_start_time = datetime.datetime.now(timezone.utc)
+        view = TimerControls(self.channel_id)
+        await interaction.response.edit_message(embed=build_embed(clock), view=view)
+        
 @bot.event
 async def on_ready():
     logger.info(f"✅ Bot logged in as {bot.user}")
@@ -1062,6 +1075,8 @@ async def simulate_mass(interaction: discord.Interaction, num_games: int = 100):
         return await interaction.response.send_message("❌ Admin role required.", ephemeral=True)
     await interaction.response.send_message(f"🧪 Running {num_games} random simulations...", ephemeral=True)
     await run_mass_simulation(interaction, num_games)
+
+
 
 
 
