@@ -8,7 +8,6 @@ import asyncio
 import os
 import discord
 import datetime
-import json
 import aiohttp
 import logging
 from pathlib import Path
@@ -18,22 +17,19 @@ from discord import app_commands
 from datetime import timezone, timedelta
 from kill_feed_client import KillFeedClient
 
-# Set up logging
+# --- Logging ---
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.StreamHandler()  # Railway captures stdout
-    ]
+    handlers=[logging.StreamHandler()]
 )
 logger = logging.getLogger(__name__)
 
-# Create directories if running locally (Railway handles this differently)
+# --- Environment and Config ---
+load_dotenv()
 if not os.getenv('RAILWAY_ENVIRONMENT'):
     for directory in ['logs', 'match_reports', 'match_data', 'backups']:
         os.makedirs(directory, exist_ok=True)
-
-load_dotenv()
 
 intents = discord.Intents.default()
 intents.message_content = False
@@ -41,39 +37,29 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 
 clocks = {}
 LOG_CHANNEL_ID = int(os.getenv('LOG_CHANNEL_ID', '0')) if os.getenv('LOG_CHANNEL_ID', '0').isdigit() else 0
-RESULTS_TARGET = None  # Will store channel/thread ID for results
+RESULTS_TARGET = None
 
 KILLFEED_ENABLED = os.getenv('KILLFEED_ENABLED', 'true').lower() == 'true'
 KILLFEED_CHANNEL_ID = int(os.getenv('KILLFEED_CHANNEL_ID', '0')) if os.getenv('KILLFEED_CHANNEL_ID', '0').isdigit() else 0
 KILLFEED_SERVER_URL = os.getenv('KILLFEED_SERVER_URL', 'http://localhost:3000')
 
-kill_feed_client = None
-if KILLFEED_ENABLED:
-    kill_feed_client = KillFeedClient(KILLFEED_SERVER_URL)
+kill_feed_client = KillFeedClient(KILLFEED_SERVER_URL) if KILLFEED_ENABLED else None
 
 class APIKeyCRCONClient:
     """CRCON client using API key authentication"""
-    
     def __init__(self):
         self.base_url = os.getenv('CRCON_URL', 'http://localhost:8010')
         self.api_key = os.getenv('CRCON_API_KEY')
         self.session = None
         self.timeout = aiohttp.ClientTimeout(total=int(os.getenv('CRCON_TIMEOUT', '15')))
-    
+
     async def __aenter__(self):
-        """Async context manager entry"""
         headers = {
             'Authorization': f'Bearer {self.api_key}',
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         }
-        
-        self.session = aiohttp.ClientSession(
-            timeout=self.timeout,
-            headers=headers
-        )
-        
-        # Test connection
+        self.session = aiohttp.ClientSession(timeout=self.timeout, headers=headers)
         try:
             async with self.session.get(f"{self.base_url}/api/get_status") as response:
                 if response.status != 200:
@@ -83,12 +69,10 @@ class APIKeyCRCONClient:
             if self.session:
                 await self.session.close()
             raise e
-        
         logger.info("Successfully connected to CRCON with API key")
         return self
-    
+
     async def __aexit__(self, exc_type, exc_val, exc_tb):
-        """Async context manager exit"""
         if self.session:
             await self.session.close()
 
@@ -96,8 +80,6 @@ class APIKeyCRCONClient:
 async def on_ready():
     logger.info(f"✅ Bot logged in as {bot.user}")
     logger.info(f"🔗 CRCON URL: {os.getenv('CRCON_URL', 'Not configured')}")
-    
-    # Test CRCON connection on startup
     try:
         test_client = APIKeyCRCONClient()
         async with test_client as client:
@@ -108,8 +90,6 @@ async def on_ready():
                 logger.warning("🟡 CRCON connected but no game data")
     except Exception as e:
         logger.warning(f"⚠️ CRCON connection test failed: {e}")
-    
-    # Sync commands
     await bot.wait_until_ready()
     try:
         synced = await bot.tree.sync()
@@ -119,8 +99,6 @@ async def on_ready():
         print(f"🎉 HLL Tank Overwatch Clock ready! Use /reverse_clock to start")
     except Exception as e:
         logger.error(f"❌ Command sync failed: {e}")
-    
-    # Start Kill Feed listener
     if KILLFEED_ENABLED and kill_feed_client:
         bot.loop.create_task(kill_feed_client.run(bot, KILLFEED_CHANNEL_ID))
 
@@ -904,39 +882,26 @@ async def on_ready():
 # Main execution
 if __name__ == "__main__":
     print("🚀 Starting HLL Tank Overwatch Bot...")
-    
-    # Check for Discord token
     token = os.getenv("DISCORD_TOKEN")
     if not token or token == "your_discord_bot_token_here":
         print("❌ DISCORD_TOKEN not configured!")
-        print("1. Create a Discord bot at https://discord.com/developers/applications")
-        print("2. Copy the bot token")
-        print("3. Edit .env file and set DISCORD_TOKEN=your_actual_token")
         exit(1)
-    
-    # Check for API key
     api_key = os.getenv("CRCON_API_KEY")
     if not api_key or api_key == "your_crcon_api_key_here":
         print("❌ CRCON_API_KEY not configured!")
-        print("Edit .env file and set CRCON_API_KEY=your_crcon_api_key_here")
         exit(1)
-    
-    # Show configuration
     print(f"🔗 CRCON: {os.getenv('CRCON_URL', 'http://localhost:8010')}")
     print(f"🔑 API Key: {api_key[:8]}...")
     print(f"👑 Admin Role: {os.getenv('ADMIN_ROLE_NAME', 'admin')}")
     print(f"🤖 Bot Name: {os.getenv('BOT_NAME', 'HLLTankBot')}")
     print(f"⏱️ Update Interval: {os.getenv('UPDATE_INTERVAL', '15')}s")
     print(f"🔄 Auto-Switch: {os.getenv('CRCON_AUTO_SWITCH', 'true')}")
-    
     log_channel = os.getenv('LOG_CHANNEL_ID', '0')
     if log_channel != '0':
         print(f"📋 Log Channel: {log_channel}")
     else:
         print("📋 Log Channel: Disabled")
-    
     print("🎯 Focus: TIME CONTROL - Win by holding the center point longest!")
-    
     try:
         bot.run(token)
     except Exception as e:

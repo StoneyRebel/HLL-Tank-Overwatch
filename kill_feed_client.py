@@ -10,6 +10,7 @@ class KillFeedClient:
         self.channel_id = None
 
     async def run(self, bot, channel_id):
+        """Connect to the kill feed server and forward kill events to Discord."""
         self.bot = bot
         self.channel_id = channel_id
 
