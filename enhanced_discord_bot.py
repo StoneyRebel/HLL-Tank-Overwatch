@@ -97,6 +97,21 @@ class ClockState:
 
     def get_current_elapsed(self):
         return 0
+def build_embed(clock: ClockState) -> discord.Embed:
+    """
+    Build and return a Discord embed showing the current match state.
+    """
+    embed = discord.Embed(
+        title="HLL Tank Overwatch Clock",
+        description="Live match time control status",
+        color=0x0099ff
+    )
+    embed.add_field(name="🇺🇸 Allies Control Time", value=f"`{clock.format_time(clock.time_a)}`", inline=True)
+    embed.add_field(name="🇩🇪 Axis Control Time", value=f"`{clock.format_time(clock.time_b)}`", inline=True)
+    embed.add_field(name="Active Team", value=clock.active or "None", inline=True)
+    embed.add_field(name="Switches", value=str(len(clock.switches)), inline=True)
+    embed.timestamp = datetime.datetime.now(timezone.utc)
+    return embed
 
 class APIKeyCRCONClient:
     """CRCON client using API key authentication"""
@@ -1048,20 +1063,6 @@ async def simulate_mass(interaction: discord.Interaction, num_games: int = 100):
     await interaction.response.send_message(f"🧪 Running {num_games} random simulations...", ephemeral=True)
     await run_mass_simulation(interaction, num_games)
 
-def build_embed(clock: ClockState) -> discord.Embed:
-    """
-    Build and return a Discord embed showing the current match state.
-    """
-    embed = discord.Embed(
-        title="HLL Tank Overwatch Clock",
-        description="Live match time control status",
-        color=0x0099ff
-    )
-    embed.add_field(name="🇺🇸 Allies Control Time", value=f"`{clock.format_time(clock.time_a)}`", inline=True)
-    embed.add_field(name="🇩🇪 Axis Control Time", value=f"`{clock.format_time(clock.time_b)}`", inline=True)
-    embed.add_field(name="Active Team", value=clock.active or "None", inline=True)
-    embed.add_field(name="Switches", value=str(len(clock.switches)), inline=True)
-    embed.timestamp = datetime.datetime.now(timezone.utc)
-    return embed
+
 
 
