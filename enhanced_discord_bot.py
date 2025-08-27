@@ -1013,13 +1013,10 @@ class ClockState:
         self.fourth_point_owner = None
         # Add other attributes as needed
 
-    # Add all required methods (format_time, total_time, get_game_info, update_from_game, etc.)
-    # Example:
     def format_time(self, seconds):
         return str(datetime.timedelta(seconds=int(seconds)))
 
     def total_time(self, team):
-        # Example logic
         if team == "A":
             return self.time_a
         elif team == "B":
@@ -1027,7 +1024,6 @@ class ClockState:
         return 0
 
     def get_game_info(self):
-        # Return a dict with game info for embeds
         return {
             "map": "Unknown",
             "players": 0,
@@ -1037,13 +1033,10 @@ class ClockState:
         }
 
     async def update_from_game(self):
-        # Implement logic to update state from CRCON/game
         pass
 
     async def connect_crcon(self):
-        # Implement logic to connect to CRCON
         return False
 
     def get_current_elapsed(self):
-        # Implement logic to get current elapsed time
         return 0
