@@ -10,6 +10,7 @@ import discord
 import datetime
 import aiohttp
 import logging
+import random
 from pathlib import Path
 from dotenv import load_dotenv
 from discord.ext import commands, tasks
@@ -1039,6 +1040,13 @@ async def simulate_all(interaction: discord.Interaction):
         return await interaction.response.send_message("❌ Admin role required.", ephemeral=True)
     await interaction.response.send_message("🧪 Running 10 simulations...", ephemeral=True)
     await run_simulation_series(interaction)
+
+@bot.tree.command(name="simulate_mass", description="Simulate 100 games with random results (admin only)")
+async def simulate_mass(interaction: discord.Interaction, num_games: int = 100):
+    if not user_is_admin(interaction):
+        return await interaction.response.send_message("❌ Admin role required.", ephemeral=True)
+    await interaction.response.send_message(f"🧪 Running {num_games} random simulations...", ephemeral=True)
+    await run_mass_simulation(interaction, num_games)
 
 def build_embed(clock: ClockState) -> discord.Embed:
     """
