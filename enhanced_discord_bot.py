@@ -91,6 +91,7 @@ class APIKeyCRCONClient:
                 self._get_endpoint('/api/get_gamestate'),
                 self._get_endpoint('/api/get_team_view'),
                 self._get_endpoint('/api/get_map'),
+                self._get_endpoint('/api/get_team_objective_scores'),
                 self._get_endpoint('/api/get_players')
             ]
             
