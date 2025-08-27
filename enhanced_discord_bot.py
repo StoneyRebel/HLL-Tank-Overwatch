@@ -99,17 +99,32 @@ class ClockState:
         return 0
 def build_embed(clock: ClockState) -> discord.Embed:
     """
-    Build and return a Discord embed showing the current match state.
+    Build and return a detailed Discord embed showing the current match state.
     """
+    game_info = clock.get_game_info()
     embed = discord.Embed(
-        title="HLL Tank Overwatch Clock",
-        description="Live match time control status",
+        title="HLL Tank Overwatch",
+        description="Control the center point to win!",
         color=0x0099ff
     )
+    embed.add_field(name="🗺️ Map", value=game_info.get("map", "Unknown"), inline=True)
+    embed.add_field(name="👥 Players", value=f"{game_info.get('players', 0)}/100", inline=True)
     embed.add_field(name="🇺🇸 Allies Control Time", value=f"`{clock.format_time(clock.time_a)}`", inline=True)
+    embed.add_field(name="Status", value="Attacking", inline=True)  # You can make this dynamic
     embed.add_field(name="🇩🇪 Axis Control Time", value=f"`{clock.format_time(clock.time_b)}`", inline=True)
-    embed.add_field(name="Active Team", value=clock.active or "None", inline=True)
+    embed.add_field(name="Status", value="Attacking", inline=True)  # You can make this dynamic
+    embed.add_field(name="Mid Point Hold Points (Live)", value=f"Allies: {clock.mid_point_time_a // 60} pts\nAxis: {clock.mid_point_time_b // 60} pts", inline=False)
+    embed.add_field(name="Bonus Points (Hold 3rd & 4th, Live)", value=f"Allies: {clock.fourth_point_time_a // 60} pts\nAxis: {clock.fourth_point_time_b // 60} pts", inline=False)
+    # Point control status
+    if clock.time_a > clock.time_b:
+        status = "Allies Leading"
+    elif clock.time_b > clock.time_a:
+        status = "Axis Leading"
+    else:
+        status = "Tied"
+    embed.add_field(name="Point Control", value=f"Status: {status}", inline=True)
     embed.add_field(name="Switches", value=str(len(clock.switches)), inline=True)
+    embed.add_field(name="Match Clock by ANZR", value=f"{'🟢 CRCON Connected' if game_info.get('connection_status') == 'Connected' else '🔴 CRCON Disconnected'} | {'🤖 Auto ON' if clock.auto_switch else '🤖 Auto OFF'} | Updated: {game_info.get('last_update', 'N/A')}", inline=False)
     embed.timestamp = datetime.datetime.now(timezone.utc)
     return embed
 
