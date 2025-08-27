@@ -91,34 +91,39 @@ class APIKeyCRCONClient:
         """Async context manager exit"""
         if self.session:
             await self.session.close()
-        @bot.event
-    async def on_ready():
-        logger.info(f"✅ Bot logged in as {bot.user}")
-        logger.info(f"🔗 CRCON URL: {os.getenv('CRCON_URL', 'Not configured')}")
-        
-        # Test CRCON connection on startup
-        try:
-            test_client = APIKeyCRCONClient()
-            async with test_client as client:
-                live_data = await client.get_live_game_state()
-                if live_data:
-                    logger.info("✅ CRCON connection verified on startup")
-                else:
-                    logger.warning("🟡 CRCON connected but no game data")
-        except Exception as e:
-            logger.warning(f"⚠️ CRCON connection test failed: {e}")
-        
-        # Sync commands
-        await bot.wait_until_ready()
-        try:
-            synced = await bot.tree.sync()
-            logger.info(f"✅ Synced {len(synced)} slash commands")
-            command_names = [cmd.name for cmd in synced]
-            logger.info(f"Commands: {', '.join(command_names)}")
-            print(f"🎉 HLL Tank Overwatch Clock ready! Use /reverse_clock to start")
-        except Exception as e:
-            logger.error(f"❌ Command sync failed: {e}")
+
+@bot.event
+async def on_ready():
+    logger.info(f"✅ Bot logged in as {bot.user}")
+    logger.info(f"🔗 CRCON URL: {os.getenv('CRCON_URL', 'Not configured')}")
     
+    # Test CRCON connection on startup
+    try:
+        test_client = APIKeyCRCONClient()
+        async with test_client as client:
+            live_data = await client.get_live_game_state()
+            if live_data:
+                logger.info("✅ CRCON connection verified on startup")
+            else:
+                logger.warning("🟡 CRCON connected but no game data")
+    except Exception as e:
+        logger.warning(f"⚠️ CRCON connection test failed: {e}")
+    
+    # Sync commands
+    await bot.wait_until_ready()
+    try:
+        synced = await bot.tree.sync()
+        logger.info(f"✅ Synced {len(synced)} slash commands")
+        command_names = [cmd.name for cmd in synced]
+        logger.info(f"Commands: {', '.join(command_names)}")
+        print(f"🎉 HLL Tank Overwatch Clock ready! Use /reverse_clock to start")
+    except Exception as e:
+        logger.error(f"❌ Command sync failed: {e}")
+    
+    # Start Kill Feed listener
+    if KILLFEED_ENABLED and kill_feed_client:
+        bot.loop.create_task(kill_feed_client.run(bot, KILLFEED_CHANNEL_ID))
+
     # Start the updater first
     if not match_updater.is_running():
         match_updater.start(self.channel_id)
