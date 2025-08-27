@@ -987,3 +987,63 @@ async def simulate_all(interaction: discord.Interaction):
         return await interaction.response.send_message("❌ Admin role required.", ephemeral=True)
     await interaction.response.send_message("🧪 Running 10 simulations...", ephemeral=True)
     await run_simulation_series(interaction)
+
+class ClockState:
+    """
+    Tracks match timing, control times, CRCON integration, and game state.
+    Add all necessary attributes and methods here.
+    """
+    def __init__(self):
+        self.time_a = 0
+        self.time_b = 0
+        self.active = None
+        self.last_switch = None
+        self.started = False
+        self.clock_started = False
+        self.switches = []
+        self.message = None
+        self.crcon_client = None
+        self.auto_switch = False
+        self.match_start_time = datetime.datetime.now(timezone.utc)
+        self.mid_point_time_a = 0
+        self.mid_point_time_b = 0
+        self.fourth_point_time_a = 0
+        self.fourth_point_time_b = 0
+        self.mid_point_owner = None
+        self.fourth_point_owner = None
+        # Add other attributes as needed
+
+    # Add all required methods (format_time, total_time, get_game_info, update_from_game, etc.)
+    # Example:
+    def format_time(self, seconds):
+        return str(datetime.timedelta(seconds=int(seconds)))
+
+    def total_time(self, team):
+        # Example logic
+        if team == "A":
+            return self.time_a
+        elif team == "B":
+            return self.time_b
+        return 0
+
+    def get_game_info(self):
+        # Return a dict with game info for embeds
+        return {
+            "map": "Unknown",
+            "players": 0,
+            "connection_status": "Disconnected",
+            "last_update": "N/A",
+            "game_time": 0
+        }
+
+    async def update_from_game(self):
+        # Implement logic to update state from CRCON/game
+        pass
+
+    async def connect_crcon(self):
+        # Implement logic to connect to CRCON
+        return False
+
+    def get_current_elapsed(self):
+        # Implement logic to get current elapsed time
+        return 0
