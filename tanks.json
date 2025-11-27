@@ -1,0 +1,149 @@
+[
+  {
+    "vehicle": "M8 Greyhound",
+    "class": "Recon",
+    "side": "Allies",
+    "country": "US",
+    "gun": "37mm M6"
+  },
+  {
+    "vehicle": "T-70",
+    "class": "Light",
+    "side": "Allies",
+    "country": "USSR",
+    "gun": "45mm 20-K"
+  },
+  {
+    "vehicle": "Sd.Kfz.234/2 Puma",
+    "class": "Recon",
+    "side": "Axis",
+    "country": "Germany",
+    "gun": "50mm KwK 39 L/60"
+  },
+  {
+    "vehicle": "M4A1 Sherman",
+    "class": "Medium",
+    "side": "Allies",
+    "country": "US",
+    "gun": "75mm M3"
+  },
+  {
+    "vehicle": "M4A3E2 Sherman Jumbo (75mm)",
+    "class": "Medium",
+    "side": "Allies",
+    "country": "US",
+    "gun": "75mm M3"
+  },
+  {
+    "vehicle": "T-34/76",
+    "class": "Medium",
+    "side": "Allies",
+    "country": "USSR",
+    "gun": "76mm F-34"
+  },
+  {
+    "vehicle": "T-34/85",
+    "class": "Medium",
+    "side": "Allies",
+    "country": "USSR",
+    "gun": "85mm ZiS-S-53"
+  },
+  {
+    "vehicle": "Panzer IV Ausf. J",
+    "class": "Medium",
+    "side": "Axis",
+    "country": "Germany",
+    "gun": "75mm KwK 40 L/48"
+  },
+  {
+    "vehicle": "Crusader Mk III",
+    "class": "Medium",
+    "side": "Allies",
+    "country": "UK",
+    "gun": "57mm QF 6-pounder"
+  },
+  {
+    "vehicle": "Sherman Firefly",
+    "class": "Medium",
+    "side": "Allies",
+    "country": "UK",
+    "gun": "76.2mm QF 17-pounder"
+  },
+  {
+    "vehicle": "Sherman II",
+    "class": "Medium",
+    "side": "Allies",
+    "country": "Commonwealth",
+    "gun": "75mm M3"
+  },
+  {
+    "vehicle": "Cromwell",
+    "class": "Medium",
+    "side": "Allies",
+    "country": "UK",
+    "gun": "OQF 75mm"
+  },
+  {
+    "vehicle": "M4A3E2 Sherman Jumbo (76mm)",
+    "class": "Heavy",
+    "side": "Allies",
+    "country": "US",
+    "gun": "76mm M1A1"
+  },
+  {
+    "vehicle": "M26 Pershing",
+    "class": "Heavy",
+    "side": "Allies",
+    "country": "US",
+    "gun": "90mm M3"
+  },
+  {
+    "vehicle": "KV-1",
+    "class": "Heavy",
+    "side": "Allies",
+    "country": "USSR",
+    "gun": "76mm ZiS-5"
+  },
+  {
+    "vehicle": "IS-1",
+    "class": "Heavy",
+    "side": "Allies",
+    "country": "USSR",
+    "gun": "85mm D-5T"
+  },
+  {
+    "vehicle": "Panther Ausf. G",
+    "class": "Heavy",
+    "side": "Axis",
+    "country": "Germany",
+    "gun": "75mm KwK 42 L/70"
+  },
+  {
+    "vehicle": "Tiger I",
+    "class": "Heavy",
+    "side": "Axis",
+    "country": "Germany",
+    "gun": "88mm KwK 36 L/56"
+  },
+  {
+    "vehicle": "Churchill Mk VII",
+    "class": "Heavy",
+    "side": "Allies",
+    "country": "UK",
+    "gun": "75mm Vickers HV"
+  },
+  {
+    "vehicle": "Churchill NA75",
+    "class": "Heavy",
+    "side": "Allies",
+    "country": "Commonwealth",
+    "gun": "75mm M3"
+  },
+  {
+    "vehicle": "Churchill (General)",
+    "class": "Heavy",
+    "side": "Allies",
+    "country": "UK",
+    "gun": "OQF 75mm"
+  }
+]

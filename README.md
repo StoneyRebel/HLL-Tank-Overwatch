@@ -6,12 +6,25 @@ A Discord bot for Hell Let Loose communities that tracks time control of the cen
 ![Python](https://img.shields.io/badge/Python-3.8+-3776ab?style=flat-square&logo=python)
 ![Railway](https://img.shields.io/badge/Deploy-Railway-0B0D0E?style=flat-square&logo=railway)
 
+## 🔗 Quick Links
+- [✨ Features](#-features)
+- [🚀 Deploy to Railway](#-quick-deploy-to-railway)
+- [🛠️ Local Setup](#️-local-development-setup)
+- [⚙️ Environment Variables](#️-environment-variables)
+- [🎮 Discord Setup](#-discord-setup)
+- [📖 Usage](#-usage)
+- [🐛 Troubleshooting](#-troubleshooting)
+- [🤝 Contributing](#-contributing)
+
+> **Before you start:** you need a Discord bot token (`DISCORD_TOKEN`) and a CRCON API key (`CRCON_API_KEY`). Without both values the bot exits immediately (same behavior in Railway and local runs).
+
 ## ✨ Features
 
 - **⏱️ Time Control Tracking** - Tracks how long each team controls the center point
 - **🤖 Auto-Detection** - Automatically switches when points are captured (via CRCON)
 - **🎮 Live Game Integration** - Shows current map, players, and game time
 - **📊 Real-time Stats** - Live Discord embeds with current standings
+- **💥 Tank Kill Tracking** - Optional CRCON kill feed stream powers tank scoreboards and highlights
 - **🏆 Match Results** - Automatic results posting when matches end
 - **⚔️ In-Game Messages** - Notifications sent to all players with current times
 
@@ -23,6 +36,7 @@ The bot creates interactive Discord embeds showing:
 - Who's currently defending/attacking
 - Time advantages and match leader
 - Live game time remaining
+- Tank kill scoreboard plus most recent armor kill (when kill feed is enabled)
 
 ## 🚀 Quick Deploy to Railway
 
@@ -116,6 +130,14 @@ The bot creates interactive Discord embeds showing:
 | `BOT_NAME` | `HLLTankBot` | Name shown in game messages |
 | `BOT_AUTHOR` | `YourCommunityName` | Author shown in embed footer |
 | `LOG_CHANNEL_ID` | `0` | Discord channel for match logs (0 = disabled) |
+| `ENABLE_KILL_FEED` | `false` | Toggle tank-kill tracking via CRCON webhook |
+| `KILL_WEBHOOK_PORT` | `8081` | Port to listen for CRCON kill webhooks |
+| `KILL_WEBHOOK_HOST` | `0.0.0.0` | Host/interface to bind the webhook listener |
+| `KILL_WEBHOOK_PATH` | `/kill-webhook` | Path for the webhook POST endpoint |
+| `KILL_WEBHOOK_SECRET` | – | Optional shared secret expected in `X-Webhook-Secret` header |
+| `TANK_WEAPON_KEYWORDS` | – | JSON string or file path listing weapon keywords that count as tank kills |
+
+> Note: Previous WebSocket/polling kill feed integration was removed in favor of the CRCON kill webhook; keep these settings handy only if you reintroduce the older transport in the future.
 
 ## 🎮 Discord Setup
 
@@ -184,8 +206,25 @@ Make sure to include `http://` or `https://`
 | `/reverse_clock` | Create a new match clock |
 | `/crcon_status` | Check CRCON connection |
 | `/server_info` | Get current server information |
+| `/killfeed_status` | Inspect kill feed listener health, config, and last detected kill |
 | `/send_message` | Send message to game (admin only) |
 | `/help_clock` | Show help information |
+| `/test_map` | Debug CRCON map/player payloads |
+| `/test_player_scores` | Inspect detailed player stats for DMT scoring |
+
+## 🧪 Diagnostics & Manual Testing
+
+Need to validate the tank kill overlay without a production server? Use a local webhook POST:
+
+1) Start the bot locally with `ENABLE_KILL_FEED=true` (defaults: `KILL_WEBHOOK_PORT=8081`, `KILL_WEBHOOK_PATH=/kill-webhook`).
+2) Send a test kill payload:
+   ```bash
+   curl -X POST http://localhost:8081/kill-webhook \
+     -H "Content-Type: application/json" \
+     -d '{"killer_team":"allies","victim_team":"axis","weapon":"75mm","killer_name":"Allied Gunner","victim_name":"Axis Tank","vehicle":"Panzer IV"}'
+   ```
+   Include `-H "X-Webhook-Secret: <value>"` if you set `KILL_WEBHOOK_SECRET`.
+3) Run `/killfeed_status` to confirm the webhook listener is running and the last event is captured.
 
 ## 🏆 How It Works
 
@@ -219,15 +258,22 @@ Make sure to include `http://` or `https://`
 - Verify `CRCON_URL` is correct and accessible
 - Check `CRCON_API_KEY` is valid
 - Ensure CRCON server is running
+- Use `/crcon_status` or `/test_map` for live diagnostics
+
+**Kill feed disabled or not updating:**
+- Ensure `ENABLE_KILL_FEED=true`, CRCON webhook URL points to your deployed listener, and secrets match
+- Start a match via `/reverse_clock` so the listener attaches to an active channel
+- Run `/killfeed_status` to confirm the webhook listener and inspect the latest event
 
 **Auto-switch not working:**
 - Set `CRCON_AUTO_SWITCH=true`
 - Verify CRCON connection is stable
 - Check game is on a Warfare map
+- Use `/test_player_scores` to confirm detailed player data is available for DMT scoring
 
 ### Logs
 
-Check Railway logs or local `logs/bot.log` file for detailed error information.
+Check Railway logs or local `logs/bot.log` file for detailed error information. Slash commands like `/crcon_status` and `/test_map` provide additional runtime context without digging through logs.
 
 ## 🤝 Contributing
 
@@ -236,6 +282,8 @@ Check Railway logs or local `logs/bot.log` file for detailed error information.
 3. Commit your changes (`git commit -m 'Add amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
+
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for coding guidelines, testing expectations, and PR checklists. When adding new environment variables, remember to: update `.env.template`, document them here and in `SETUP.md`, validate them during startup (`if __name__ == "__main__"`), and mirror requirements in `.github/workflows/test.yml` if CI depends on them.
 
 ## 📄 License
 

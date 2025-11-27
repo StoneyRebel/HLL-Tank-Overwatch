@@ -1,0 +1,5730 @@
+{
+    "result": [
+        {
+            "endpoint": "add_admin",
+            "arguments": {
+                "player_id": {
+                    "default": null,
+                    "annotation": null
+                },
+                "role": {
+                    "default": null,
+                    "annotation": null
+                },
+                "description": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_add_admin_roles"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "add_blacklist_record",
+            "arguments": {
+                "player_id": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "blacklist_id": {
+                    "default": null,
+                    "annotation": "<class 'int'>"
+                },
+                "reason": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "expires_at": {
+                    "default": "None",
+                    "annotation": "datetime.datetime | None"
+                },
+                "admin_name": {
+                    "default": "",
+                    "annotation": "<class 'str'>"
+                }
+            },
+            "return_type": "<class 'rcon.types.BlacklistType'>",
+            "doc_string": "Adds a new record to a blacklist.\n\nBlacklists are collections of ban-like records stored by CRCON\nto provide greater flexibility and scalability.\n\nArgs:\n    player_id: steam_id_64 or windows store ID to blacklist\n    blacklist_id: The ID of the blacklist to use\n    reason: The reason the player was blacklisted for\n    expires_at: When the blacklist should expire, if ever\n    admin_name: The person/tool that is blacklisting the player",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_add_blacklist_records"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "add_map_to_rotation",
+            "arguments": {
+                "map_name": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "after_map_name": {
+                    "default": "None",
+                    "annotation": "str | None"
+                }
+            },
+            "return_type": "None",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_add_map_to_rotation"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "add_map_to_votemap_whitelist",
+            "arguments": {
+                "map_name": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                }
+            },
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_add_map_to_whitelist"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "add_maps_to_rotation",
+            "arguments": {
+                "map_names": {
+                    "default": null,
+                    "annotation": "list[str]"
+                }
+            },
+            "return_type": null,
+            "doc_string": "Add the given maps to the rotation, returns the game server response for each map",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_add_maps_to_rotation"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "add_maps_to_votemap_whitelist",
+            "arguments": {
+                "map_names": {
+                    "default": null,
+                    "annotation": "typing.Iterable[str]"
+                }
+            },
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_add_maps_to_whitelist"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "add_message_template",
+            "arguments": {
+                "title": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "content": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "category": {
+                    "default": null,
+                    "annotation": "str | rcon.types.MessageTemplateCategory"
+                },
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                }
+            },
+            "return_type": "<class 'int'>",
+            "doc_string": "Add a new message template and return the ID of the new record",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_add_message_templates"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "add_vip",
+            "arguments": {
+                "player_id": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "description": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "expiration": {
+                    "default": "None",
+                    "annotation": "str | None"
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": "Adds VIP status on the game server and adds or updates their PlayerVIP record.",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_add_vip"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "ban_profanities",
+            "arguments": {
+                "profanities": {
+                    "default": null,
+                    "annotation": "list[str]"
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_ban_profanities"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "clear_cache",
+            "arguments": {},
+            "return_type": "<class 'bool'>",
+            "doc_string": "Clear every key in this servers Redis cache and return number of deleted keys\n\nMany things in CRCON are cached in Redis to avoid excessively polling\nthe game server, this clears the entire cache which is sometimes necessary\nto force a refresh",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_clear_crcon_cache"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "create_blacklist",
+            "arguments": {
+                "name": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "sync": {
+                    "default": "BlacklistSyncMethod.KICK_ONLY",
+                    "annotation": "<enum 'BlacklistSyncMethod'>"
+                },
+                "servers": {
+                    "default": "None",
+                    "annotation": "typing.Optional[typing.Sequence[int]]"
+                }
+            },
+            "return_type": null,
+            "doc_string": "Creates a new, empty blacklist.\n\nBlacklists are collections of ban-like records stored by CRCON\nto provide greater flexibility and scalability.\n\nArgs:\n    name:\n        Name for the list\n    sync:\n        Method to use for synchronizing an active record with the\n        game server. See `BlacklistSyncMethod` for more details.\n    servers:\n        A sequence of server numbers which this blacklist will\n        apply to. `None` means all servers.",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_create_blacklists"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "delete_blacklist",
+            "arguments": {
+                "blacklist_id": {
+                    "default": null,
+                    "annotation": "<class 'int'>"
+                }
+            },
+            "return_type": null,
+            "doc_string": "Removes a blacklist alongside all of its records.\n\nBlacklists are collections of ban-like records stored by CRCON\nto provide greater flexibility and scalability.\n\nArgs:\n    blacklist_id: The ID of the blacklist",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_delete_blacklists"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "delete_blacklist_record",
+            "arguments": {
+                "record_id": {
+                    "default": null,
+                    "annotation": "<class 'int'>"
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": "Removes a blacklist record.\n\nBlacklists are collections of ban-like records stored by CRCON\nto provide greater flexibility and scalability.\n\nArgs:\n    record_id: The ID of the record",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_delete_blacklist_records"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "delete_message_template",
+            "arguments": {
+                "id": {
+                    "default": null,
+                    "annotation": "<class 'int'>"
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": "Delete a specific message template",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_delete_message_templates"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "describe_admin_pings_discord_webhooks_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "describe_audit_discord_webhooks_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "describe_auto_broadcasts_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "describe_auto_mod_level_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "describe_auto_mod_no_leader_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "describe_auto_mod_seeding_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "describe_auto_mod_solo_tank_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "describe_camera_discord_webhooks_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "describe_camera_notification_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "describe_chat_commands_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "describe_chat_discord_webhooks_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "describe_expired_vip_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "describe_kills_discord_webhooks_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "describe_log_line_webhook_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "describe_log_stream_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "describe_name_kick_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "describe_rcon_chat_commands_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "describe_rcon_connection_settings_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "describe_rcon_server_settings_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "describe_real_vip_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "describe_scoreboard_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "describe_seed_vip_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "describe_server_name_change_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "describe_standard_broadcast_messages",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "describe_standard_punishments_messages",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "describe_standard_welcome_messages",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "describe_steam_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "describe_tk_ban_on_connect_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "describe_vac_game_bans_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "describe_votekick_autotoggle_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "describe_votemap_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "describe_watch_killrate_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "describe_watchlist_discord_webhooks_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "do_service",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [
+                "api.can_toggle_services"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "download_vips",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [
+                "api.can_download_vip_list"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "edit_blacklist",
+            "arguments": {
+                "blacklist_id": {
+                    "default": null,
+                    "annotation": "<class 'int'>"
+                },
+                "name": {
+                    "default": "MISSING",
+                    "annotation": "<class 'str'>"
+                },
+                "sync_method": {
+                    "default": "MISSING",
+                    "annotation": "<enum 'BlacklistSyncMethod'>"
+                },
+                "servers": {
+                    "default": "MISSING",
+                    "annotation": "typing.Optional[typing.Sequence[int]]"
+                }
+            },
+            "return_type": null,
+            "doc_string": "Edits a blacklist.\n\nBlacklists are collections of ban-like records stored by CRCON\nto provide greater flexibility and scalability.\n\nArgs:\n    blacklist_id: The ID of the blacklist\n    name: What to name the blacklist\n    sync: Method to use for synchronizing records with the game\n    servers: List of server numbers this blacklist applies to. `None` means all.",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_blacklists"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "edit_blacklist_record",
+            "arguments": {
+                "record_id": {
+                    "default": null,
+                    "annotation": "<class 'int'>"
+                },
+                "blacklist_id": {
+                    "default": "MISSING",
+                    "annotation": "<class 'int'>"
+                },
+                "reason": {
+                    "default": "MISSING",
+                    "annotation": "<class 'str'>"
+                },
+                "expires_at": {
+                    "default": "MISSING",
+                    "annotation": "datetime.datetime | None"
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": "Edits a blacklist record.\n\nBlacklists are collections of ban-like records stored by CRCON\nto provide greater flexibility and scalability.\n\nThe blacklisted player ID cannot be edited. You instead need to\ndelete this record and create a new one.\n\nArgs:\n    record_id: The ID of the record\n    blacklist_id: The ID of the blacklist this record should be part of\n    reason: The reason the player was blacklisted for\n    expires_at: When the blacklist should expire, if ever",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_blacklist_records"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "edit_message_template",
+            "arguments": {
+                "id": {
+                    "default": null,
+                    "annotation": "<class 'int'>"
+                },
+                "title": {
+                    "default": null,
+                    "annotation": "str | None"
+                },
+                "content": {
+                    "default": null,
+                    "annotation": "str | None"
+                },
+                "category": {
+                    "default": null,
+                    "annotation": "str | rcon.types.MessageTemplateCategory | None"
+                },
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                }
+            },
+            "return_type": "None",
+            "doc_string": "Add a new message template and return the ID of the new record",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_edit_message_templates"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "flag_player",
+            "arguments": {
+                "player_id": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "flag": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "player_name": {
+                    "default": "None",
+                    "annotation": "str | None"
+                },
+                "comment": {
+                    "default": "None",
+                    "annotation": "str | None"
+                }
+            },
+            "return_type": "<class 'rcon.types.PlayerFlagType'>",
+            "doc_string": "Adds a new flag to the specified player_id\n\nFlags are used to label users and some tools use the flags to whitelist\nusers. They are traditionally an emoji (the frontend uses an emoji picker)\nbut there is no length restriction in the database.\n\nArgs:\n    player_id: steam_id_64 or windows store ID\n    player_name: The players name which will be added as an alias\n    flag:\n    comment:",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_flag_player"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "get_admin_groups",
+            "arguments": {},
+            "return_type": "list[str]",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_admin_groups"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_admin_ids",
+            "arguments": {},
+            "return_type": "list[rcon.types.AdminType]",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_admin_ids"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_admin_pings_discord_webhooks_config",
+            "arguments": {},
+            "return_type": "<class 'rcon.user_config.webhooks.AdminPingWebhooksUserConfig'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_admin_pings_discord_webhooks_config"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_all_discord_webhooks_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [
+                "api.can_view_admin_pings_discord_webhooks_config",
+                "api.can_view_audit_discord_webhooks_config",
+                "api.can_view_camera_discord_webhooks_config",
+                "api.can_view_chat_discord_webhooks_config",
+                "api.can_view_kills_discord_webhooks_config",
+                "api.can_view_watchlist_discord_webhooks_config"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_all_message_templates",
+            "arguments": {},
+            "return_type": "<class 'rcon.types.AllMessageTemplateTypes'>",
+            "doc_string": "Get all message templates by category",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_message_templates"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_all_standard_message_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [
+                "api.can_view_standard_broadcast_messages",
+                "api.can_view_standard_punishment_messages",
+                "api.can_view_standard_welcome_messages"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_all_webhook_queues",
+            "arguments": {},
+            "return_type": "list[str]",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_webhook_queues"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_audit_discord_webhooks_config",
+            "arguments": {},
+            "return_type": "<class 'rcon.user_config.webhooks.AuditWebhooksUserConfig'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_audit_discord_webhooks_config"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_audit_logs",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [
+                "api.can_view_audit_logs"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_audit_logs_autocomplete",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [
+                "api.can_view_audit_logs_autocomplete"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_auto_broadcasts_config",
+            "arguments": {},
+            "return_type": "<class 'rcon.user_config.auto_broadcast.AutoBroadcastUserConfig'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_auto_broadcast_config"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_auto_mod_level_config",
+            "arguments": {},
+            "return_type": "<class 'rcon.user_config.auto_mod_level.AutoModLevelUserConfig'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_auto_mod_level_config"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_auto_mod_no_leader_config",
+            "arguments": {},
+            "return_type": "<class 'rcon.user_config.auto_mod_no_leader.AutoModNoLeaderUserConfig'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_auto_mod_no_leader_config"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_auto_mod_seeding_config",
+            "arguments": {},
+            "return_type": "<class 'rcon.user_config.auto_mod_seeding.AutoModSeedingUserConfig'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_auto_mod_seeding_config"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_auto_mod_solo_tank_config",
+            "arguments": {},
+            "return_type": "<class 'rcon.user_config.auto_mod_solo_tank.AutoModNoSoloTankUserConfig'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_auto_mod_solo_tank_config"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_auto_settings",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [
+                "api.can_view_auto_settings"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_autobalance_enabled",
+            "arguments": {},
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_autobalance_enabled"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_autobalance_threshold",
+            "arguments": {},
+            "return_type": "<class 'int'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_autobalance_threshold"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_ban",
+            "arguments": {
+                "player_id": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                }
+            },
+            "return_type": "list[rcon.types.GameServerBanType]",
+            "doc_string": "get all bans from player_id\n@param player_id: steam_id_64 or windows store ID of a user\n@return: a array of bans",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_player_bans"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_bans",
+            "arguments": {},
+            "return_type": "list[rcon.types.GameServerBanType]",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_perma_bans",
+                "api.can_view_temp_bans"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_blacklist",
+            "arguments": {
+                "blacklist_id": {
+                    "default": null,
+                    "annotation": "<class 'int'>"
+                }
+            },
+            "return_type": "<class 'rcon.types.BlacklistWithRecordsType'>",
+            "doc_string": "Get a blacklist and its respective records.\n\nBlacklists are collections of ban-like records stored by CRCON\nto provide greater flexibility and scalability.\n\nArgs:\n    blacklist_id: The ID of the blacklist",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_blacklists"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_blacklist_records",
+            "arguments": {
+                "player_id": {
+                    "default": "None",
+                    "annotation": "<class 'str'>"
+                },
+                "reason": {
+                    "default": "None",
+                    "annotation": "<class 'str'>"
+                },
+                "blacklist_id": {
+                    "default": "None",
+                    "annotation": "<class 'int'>"
+                },
+                "exclude_expired": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "page_size": {
+                    "default": "50",
+                    "annotation": "<class 'int'>"
+                },
+                "page": {
+                    "default": "1",
+                    "annotation": "<class 'int'>"
+                }
+            },
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_blacklists"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_blacklists",
+            "arguments": {},
+            "return_type": "list[rcon.types.BlacklistType]",
+            "doc_string": "Get all blacklists.\n\nBlacklists are collections of ban-like records stored by CRCON\nto provide greater flexibility and scalability.",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_blacklists"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_broadcast_message",
+            "arguments": {},
+            "return_type": "str | bytes | None",
+            "doc_string": "Returns the current broadcast message if the cache is set\n\nThere is no RCON command to get the current broadcast message so it can only\nbe retrieved if it was set by CRCON and the cache has not expired",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_broadcast_message"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_camera_discord_webhooks_config",
+            "arguments": {},
+            "return_type": "<class 'rcon.user_config.webhooks.CameraWebhooksUserConfig'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_camera_discord_webhooks_config"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_camera_notification_config",
+            "arguments": {},
+            "return_type": "<class 'rcon.user_config.camera_notification.CameraNotificationUserConfig'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_camera_config"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_chat_commands_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_chat_commands_config"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_chat_discord_webhooks_config",
+            "arguments": {},
+            "return_type": "<class 'rcon.user_config.webhooks.ChatWebhooksUserConfig'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_chat_discord_webhooks_config"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_connection_info",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [
+                "api.can_view_connection_info"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_date_scoreboard",
+            "arguments": {
+                "start": {
+                    "default": null,
+                    "annotation": "<class 'int'>"
+                },
+                "end": {
+                    "default": null,
+                    "annotation": "<class 'int'>"
+                }
+            },
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_date_scoreboard"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_detailed_player_info",
+            "arguments": {
+                "player_id": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "player": {
+                    "default": "None",
+                    "annotation": "rcon.types.GetPlayersType | None"
+                }
+            },
+            "return_type": "<class 'rcon.types.GetDetailedPlayer'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_detailed_player_info"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_detailed_players",
+            "arguments": {},
+            "return_type": "<class 'rcon.types.GetDetailedPlayers'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_detailed_players"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_expired_vip_config",
+            "arguments": {},
+            "return_type": "<class 'rcon.user_config.expired_vips.ExpiredVipsUserConfig'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.get_expired_vip_config"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_gamestate",
+            "arguments": {},
+            "return_type": "<class 'rcon.types.GameStateType'>",
+            "doc_string": "Returns player counts, team scores, remaining match time and current/next map\n\nPlayers: Allied: 0 - Axis: 1\nScore: Allied: 2 - Axis: 2\nRemaining Time: 0:11:51\nMap: foy_warfare\nNext Map: stmariedumont_warfare",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_gamestate"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_historical_logs",
+            "arguments": {
+                "player_name": {
+                    "default": "None",
+                    "annotation": "str | None"
+                },
+                "player_id": {
+                    "default": "None",
+                    "annotation": "str | None"
+                },
+                "action": {
+                    "default": "None",
+                    "annotation": "str | None"
+                },
+                "limit": {
+                    "default": "1000",
+                    "annotation": "<class 'int'>"
+                },
+                "from_": {
+                    "default": "None",
+                    "annotation": "datetime.datetime | None"
+                },
+                "till": {
+                    "default": "None",
+                    "annotation": "datetime.datetime | None"
+                },
+                "time_sort": {
+                    "default": "desc",
+                    "annotation": "typing.Literal['desc', 'asc']"
+                },
+                "exact_player_match": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "exact_action": {
+                    "default": "True",
+                    "annotation": "<class 'bool'>"
+                },
+                "server_filter": {
+                    "default": "None",
+                    "annotation": "str | None"
+                }
+            },
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_historical_logs"
+            ],
+            "allowed_http_methods": [
+                "GET",
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "get_historical_logs_csv",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [
+                "api.can_view_historical_logs"
+            ],
+            "allowed_http_methods": [
+                "GET",
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "get_idle_autokick_time",
+            "arguments": {},
+            "return_type": "<class 'int'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_idle_autokick_time"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_ingame_mods",
+            "arguments": {},
+            "return_type": "list[rcon.types.AdminUserType]",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_ingame_admins"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_kills_discord_webhooks_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_kills_discord_webhooks_config"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_live_game_stats",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": "Return stats for the currently playing match",
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_live_scoreboard",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": "Return stats for all currently connected players (stats are reset on disconnect, not match start)",
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_log_line_webhook_config",
+            "arguments": {},
+            "return_type": "<class 'rcon.user_config.log_line_webhooks.LogLineWebhookUserConfig'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.get_log_line_webhook_config"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_log_stream_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_log_stream_config"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_logs",
+            "arguments": {
+                "since_min_ago": {
+                    "default": null,
+                    "annotation": "str | int"
+                },
+                "filter_": {
+                    "default": "",
+                    "annotation": "<class 'str'>"
+                },
+                "by": {
+                    "default": "",
+                    "annotation": "<class 'str'>"
+                }
+            },
+            "return_type": "list[str]",
+            "doc_string": "Returns raw text logs from the game server with no parsing performed\n\nYou most likely want to use a different method/endpoint to get parsed logs.",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_game_logs"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_map",
+            "arguments": {},
+            "return_type": "<class 'rcon.maps.Layer'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_current_map"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_map_history",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_map_rotation",
+            "arguments": {},
+            "return_type": "list[rcon.maps.Layer]",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_map_rotation"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_map_scoreboard",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_map_sequence",
+            "arguments": {},
+            "return_type": "list[rcon.maps.Layer]",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_current_map_sequence"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_map_shuffle_enabled",
+            "arguments": {},
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_map_shuffle_enabled"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_maps",
+            "arguments": {},
+            "return_type": "list[rcon.maps.Layer]",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_all_maps"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_max_ping_autokick",
+            "arguments": {},
+            "return_type": "<class 'int'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_max_ping_autokick"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_message_template",
+            "arguments": {
+                "id": {
+                    "default": null,
+                    "annotation": "<class 'int'>"
+                }
+            },
+            "return_type": "rcon.types.MessageTemplateType | None",
+            "doc_string": "Return the message template for the specified record if it exists",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_message_templates"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_message_template_categories",
+            "arguments": {},
+            "return_type": "list[rcon.types.MessageTemplateCategory]",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_message_templates"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_message_templates",
+            "arguments": {
+                "category": {
+                    "default": null,
+                    "annotation": "<enum 'MessageTemplateCategory'>"
+                }
+            },
+            "return_type": "list[rcon.types.MessageTemplateType]",
+            "doc_string": "Get all possible message type categories",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_message_templates"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_name",
+            "arguments": {},
+            "return_type": "<class 'str'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_server_name"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_name_kick_config",
+            "arguments": {},
+            "return_type": "<class 'rcon.user_config.name_kicks.NameKickUserConfig'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_name_kick_config"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_next_map",
+            "arguments": {},
+            "return_type": "<class 'rcon.maps.Layer'>",
+            "doc_string": "Return the next map in the rotation as determined by the gameserver through the gamestate command",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_next_map"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_objective_rows",
+            "arguments": {},
+            "return_type": "typing.List[typing.List[str]]",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_current_map"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_online_mods",
+            "arguments": {},
+            "return_type": "list[rcon.types.AdminUserType]",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_online_admins"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_own_user_permissions",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_perma_bans",
+            "arguments": {},
+            "return_type": "list[rcon.types.GameServerBanType]",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_perma_bans"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_player_comments",
+            "arguments": {
+                "player_id": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                }
+            },
+            "return_type": "list[rcon.types.PlayerCommentType]",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_player_comments"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_player_ids",
+            "arguments": {
+                "as_dict": {
+                    "default": "False",
+                    "annotation": null
+                }
+            },
+            "return_type": "dict[str, str] | list[tuple[str, str]]",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_playerids"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_player_info",
+            "arguments": {
+                "player_id": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "can_fail": {
+                    "default": "False",
+                    "annotation": null
+                }
+            },
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_player_info"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_player_messages",
+            "arguments": {
+                "player_id": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                }
+            },
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_player_messages"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_player_profile",
+            "arguments": {
+                "player_id": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "num_sessions": {
+                    "default": "10",
+                    "annotation": "<class 'int'>"
+                }
+            },
+            "return_type": "rcon.types.PlayerProfileTypeEnriched | None",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_player_profile"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_players",
+            "arguments": {},
+            "return_type": "list[rcon.types.GetPlayersType]",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_get_players"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_players_history",
+            "arguments": {
+                "page": {
+                    "default": "1",
+                    "annotation": "<class 'int'>"
+                },
+                "page_size": {
+                    "default": "500",
+                    "annotation": "<class 'int'>"
+                },
+                "last_seen_from": {
+                    "default": "None",
+                    "annotation": "datetime.datetime | None"
+                },
+                "last_seen_till": {
+                    "default": "None",
+                    "annotation": "datetime.datetime | None"
+                },
+                "player_id": {
+                    "default": "None",
+                    "annotation": "str | None"
+                },
+                "player_name": {
+                    "default": "None",
+                    "annotation": "str | None"
+                },
+                "blacklisted": {
+                    "default": "None",
+                    "annotation": "bool | None"
+                },
+                "is_watched": {
+                    "default": "None",
+                    "annotation": "bool | None"
+                },
+                "exact_name_match": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "ignore_accent": {
+                    "default": "True",
+                    "annotation": "<class 'bool'>"
+                },
+                "flags": {
+                    "default": "None",
+                    "annotation": "str | list[str] | None"
+                },
+                "country": {
+                    "default": "None",
+                    "annotation": "str | None"
+                }
+            },
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_player_history"
+            ],
+            "allowed_http_methods": [
+                "GET",
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "get_previous_map",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_profanities",
+            "arguments": {},
+            "return_type": "list[str]",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_profanities"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_public_info",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_queue_length",
+            "arguments": {},
+            "return_type": "<class 'int'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_queue_length"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_rcon_chat_commands_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_rcon_chat_commands_config"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_rcon_connection_settings_config",
+            "arguments": {},
+            "return_type": "<class 'rcon.user_config.rcon_connection_settings.RconConnectionSettingsUserConfig'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_rcon_connection_settings_config"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_rcon_server_settings_config",
+            "arguments": {},
+            "return_type": "<class 'rcon.user_config.rcon_server_settings.RconServerSettingsUserConfig'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_rcon_server_settings_config"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_real_vip_config",
+            "arguments": {},
+            "return_type": "<class 'rcon.user_config.real_vip.RealVipUserConfig'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_real_vip_config"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_recent_logs",
+            "arguments": {
+                "filter_player": {
+                    "default": "[]",
+                    "annotation": "list[str] | str"
+                },
+                "filter_action": {
+                    "default": "[]",
+                    "annotation": "list[str]"
+                },
+                "inclusive_filter": {
+                    "default": "True",
+                    "annotation": "<class 'bool'>"
+                },
+                "start": {
+                    "default": "0",
+                    "annotation": "<class 'int'>"
+                },
+                "end": {
+                    "default": "10000",
+                    "annotation": "<class 'int'>"
+                },
+                "exact_player_match": {
+                    "default": "True",
+                    "annotation": "<class 'bool'>"
+                },
+                "exact_action": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                }
+            },
+            "return_type": "<class 'rcon.types.ParsedLogsType'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_recent_logs"
+            ],
+            "allowed_http_methods": [
+                "GET",
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "get_round_time_remaining",
+            "arguments": {},
+            "return_type": "<class 'float'>",
+            "doc_string": "Returns the amount of time left in the round as seconds",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_round_time_remaining"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_scoreboard_config",
+            "arguments": {},
+            "return_type": "<class 'rcon.user_config.scoreboard.ScoreboardUserConfig'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_scorebot_config"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_scoreboard_maps",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_scorebot_config",
+            "arguments": {},
+            "return_type": "<class 'rcon.user_config.legacy_scorebot.ScorebotUserConfig'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_scorebot_config"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_seed_vip_config",
+            "arguments": {},
+            "return_type": "<class 'rcon.user_config.seed_vip.SeedVIPUserConfig'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_seed_vip_config"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_server_list",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [
+                "api.can_view_other_crcon_servers"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_server_name_change_config",
+            "arguments": {},
+            "return_type": "<class 'rcon.user_config.gtx_server_name.GtxServerNameChangeUserConfig'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.get_server_name_change_config"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_server_settings",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_autobalance_enabled",
+                "api.can_view_autobalance_threshold",
+                "api.can_view_idle_autokick_time",
+                "api.can_view_max_ping_autokick",
+                "api.can_view_queue_length",
+                "api.can_view_team_switch_cooldown",
+                "api.can_view_vip_slots",
+                "api.can_view_votekick_enabled",
+                "api.can_view_votekick_threshold"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_services",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [
+                "api.can_view_available_services"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_slots",
+            "arguments": {},
+            "return_type": "<class 'rcon.types.SlotsType'>",
+            "doc_string": "Return the current number of connected players and max players allowed",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_player_slots"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_standard_broadcast_messages",
+            "arguments": {},
+            "return_type": "<class 'rcon.user_config.standard_messages.StandardBroadcastMessagesUserConfig'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_standard_broadcast_messages"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_standard_punishments_messages",
+            "arguments": {},
+            "return_type": "<class 'rcon.user_config.standard_messages.StandardPunishmentMessagesUserConfig'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_standard_punishment_messages"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_standard_welcome_messages",
+            "arguments": {},
+            "return_type": "<class 'rcon.user_config.standard_messages.StandardWelcomeMessagesUserConfig'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_standard_welcome_messages"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_status",
+            "arguments": {},
+            "return_type": "<class 'rcon.types.StatusType'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_get_status"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_steam_config",
+            "arguments": {},
+            "return_type": "<class 'rcon.user_config.steam.SteamUserConfig'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_steam_config"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_structured_logs",
+            "arguments": {
+                "since_min_ago": {
+                    "default": null,
+                    "annotation": "<class 'int'>"
+                },
+                "filter_action": {
+                    "default": "None",
+                    "annotation": "str | None"
+                },
+                "filter_player": {
+                    "default": "None",
+                    "annotation": "str | None"
+                }
+            },
+            "return_type": "<class 'rcon.types.ParsedLogsType'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_structured_logs"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_system_usage",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_team_objective_scores",
+            "arguments": {},
+            "return_type": "tuple[int, int]",
+            "doc_string": "Returns the number of objectives held by the allied/axis team respectively",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_team_objective_scores"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_team_switch_cooldown",
+            "arguments": {},
+            "return_type": "<class 'int'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_team_switch_cooldown"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_team_view",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_team_view"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_temp_bans",
+            "arguments": {},
+            "return_type": "list[rcon.types.GameServerBanType]",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_temp_bans"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_tk_ban_on_connect_config",
+            "arguments": {},
+            "return_type": "<class 'rcon.user_config.ban_tk_on_connect.BanTeamKillOnConnectUserConfig'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_tk_ban_on_connect_config"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_vac_game_bans_config",
+            "arguments": {},
+            "return_type": "<class 'rcon.user_config.vac_game_bans.VacGameBansUserConfig'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_vac_game_bans_config"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_version",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_vip_ids",
+            "arguments": {},
+            "return_type": "list[rcon.types.VipIdType]",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_vip_ids"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_vip_slots_num",
+            "arguments": {},
+            "return_type": "<class 'int'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_vip_slots"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_vips_count",
+            "arguments": {},
+            "return_type": "<class 'int'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_vip_count"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_votekick_autotoggle_config",
+            "arguments": {},
+            "return_type": "<class 'rcon.user_config.auto_kick.AutoVoteKickUserConfig'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_votekick_autotoggle_config"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_votekick_enabled",
+            "arguments": {},
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_votekick_enabled"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_votekick_thresholds",
+            "arguments": {},
+            "return_type": "list[tuple[int, int]]",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_votekick_threshold"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_votemap_config",
+            "arguments": {},
+            "return_type": "<class 'rcon.user_config.vote_map.VoteMapUserConfig'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_votemap_config"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_votemap_status",
+            "arguments": {},
+            "return_type": "list[rcon.types.VoteMapStatusType]",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_votemap_status"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_votemap_whitelist",
+            "arguments": {},
+            "return_type": "list[str]",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_map_whitelist"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_watch_killrate_config",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_watch_killrate_config"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_watchlist_discord_webhooks_config",
+            "arguments": {},
+            "return_type": "<class 'rcon.user_config.webhooks.WatchlistWebhooksUserConfig'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_watchlist_discord_webhooks_config"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_webhook_queue_overview",
+            "arguments": {
+                "queue_id": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                }
+            },
+            "return_type": "rcon.webhook_service.QueueStatus | None",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_webhook_queues"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_webhook_service_summary",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": "Return the overall status of the service\n\nAll webhook queues, the number of queued messages, their rate limit bucket,\nthe number of rate limits each bucket has had and whether we are globally rate limited",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_webhook_queues"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "get_welcome_message",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_view_welcome_message"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "is_logged_in",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "kick",
+            "arguments": {
+                "player_id": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "reason": {
+                    "default": null,
+                    "annotation": null
+                },
+                "by": {
+                    "default": null,
+                    "annotation": null
+                },
+                "player_name": {
+                    "default": "None",
+                    "annotation": "str | None"
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_kick_players"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "login",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "logout",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [],
+            "allowed_http_methods": [
+                "GET",
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "message_player",
+            "arguments": {
+                "player_id": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "message": {
+                    "default": "",
+                    "annotation": "<class 'str'>"
+                },
+                "by": {
+                    "default": "",
+                    "annotation": "<class 'str'>"
+                },
+                "save_message": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "player_name": {
+                    "default": "None",
+                    "annotation": "str | None"
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_message_players"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "perma_ban",
+            "arguments": {
+                "player_id": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "reason": {
+                    "default": "",
+                    "annotation": null
+                },
+                "by": {
+                    "default": "",
+                    "annotation": null
+                },
+                "player_name": {
+                    "default": "None",
+                    "annotation": "str | None"
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_perma_ban_players"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "post_player_comment",
+            "arguments": {
+                "player_id": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "comment": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                }
+            },
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_add_player_comments"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "punish",
+            "arguments": {
+                "player_id": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "reason": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "player_name": {
+                    "default": "None",
+                    "annotation": "str | None"
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_punish_players"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "reconnect_gameserver",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": "Restart gunicorn workers which reconnects Rcon endpoint instances",
+            "auto_settings_capable": false,
+            "permissions_required": [
+                "api.can_restart_webserver"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "remove_admin",
+            "arguments": {
+                "player_id": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_remove_admin_roles"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "remove_all_vips",
+            "arguments": {},
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_remove_all_vips"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "remove_map_from_rotation",
+            "arguments": {
+                "map_name": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                }
+            },
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_remove_map_from_rotation"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "remove_map_from_votemap_whitelist",
+            "arguments": {
+                "map_name": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                }
+            },
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_remove_map_from_whitelist"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "remove_maps_from_rotation",
+            "arguments": {
+                "map_names": {
+                    "default": null,
+                    "annotation": "list[str]"
+                }
+            },
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_remove_maps_from_rotation"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "remove_maps_from_votemap_whitelist",
+            "arguments": {
+                "map_names": {
+                    "default": null,
+                    "annotation": "typing.Iterable[str]"
+                }
+            },
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_remove_maps_from_whitelist"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "remove_match_timer",
+            "arguments": {
+                "game_mode": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                }
+            },
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_remove_match_timer"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "remove_perma_ban",
+            "arguments": {
+                "player_id": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": "Remove a perma ban by ban log. Note that a player ID is a valid ban log.",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_remove_perma_bans"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "remove_temp_ban",
+            "arguments": {
+                "player_id": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": "Remove a temp ban by player ID or game server ban log",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_remove_temp_bans"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "remove_vip",
+            "arguments": {
+                "player_id": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": "Removes VIP status on the game server and removes their PlayerVIP record.",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_remove_vip"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "remove_warmup_timer",
+            "arguments": {
+                "game_mode": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                }
+            },
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_remove_warmup_timer"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "reset_all_webhook_queues_for_server_number",
+            "arguments": {
+                "server_number": {
+                    "default": null,
+                    "annotation": "int | str"
+                }
+            },
+            "return_type": "<class 'int'>",
+            "doc_string": "Delete each queue associated with the specified server number",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_webhook_queues"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "reset_map_votemap_whitelist",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_reset_map_whitelist"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "reset_votekick_thresholds",
+            "arguments": {},
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_reset_votekick_threshold"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "reset_votemap_state",
+            "arguments": {},
+            "return_type": "list[rcon.types.VoteMapStatusType]",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_reset_votemap_state"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "reset_webhook_message_type",
+            "arguments": {
+                "message_type": {
+                    "default": null,
+                    "annotation": "rcon.webhook_service.WebhookMessageType | str"
+                }
+            },
+            "return_type": "<class 'int'>",
+            "doc_string": "Delete each queue of wh_type (discord, etc.) returning the number of deleted queues",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_webhook_queues"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "reset_webhook_queue",
+            "arguments": {
+                "queue_id": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": "Delete the specified queue; returning if it deleted any entries",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_webhook_queues"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "reset_webhook_queue_type",
+            "arguments": {
+                "webhook_type": {
+                    "default": null,
+                    "annotation": "rcon.webhook_service.WebhookType | str"
+                }
+            },
+            "return_type": "<class 'int'>",
+            "doc_string": "Delete each queue of wh_type (discord, etc.) returning the number of deleted queues",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_webhook_queues"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "reset_webhook_queues",
+            "arguments": {},
+            "return_type": "<class 'int'>",
+            "doc_string": "Delete each queue; unprocessed messages may be lost depending on timing",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_webhook_queues"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "run_raw_command",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [
+                "api.can_run_raw_commands"
+            ],
+            "allowed_http_methods": [
+                "GET",
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_admin_pings_discord_webhooks_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_admin_pings_discord_webhooks_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_audit_discord_webhooks_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_audit_discord_webhooks_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_auto_broadcasts_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_auto_broadcast_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_auto_mod_level_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_auto_mod_level_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_auto_mod_no_leader_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_auto_mod_no_leader_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_auto_mod_seeding_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "user_config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_auto_mod_seeding_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_auto_mod_solo_tank_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_auto_mod_solo_tank_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_auto_settings",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [
+                "api.can_change_auto_settings"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_autobalance_enabled",
+            "arguments": {
+                "value": {
+                    "default": null,
+                    "annotation": "<class 'bool'>"
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_autobalance_enabled"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_autobalance_threshold",
+            "arguments": {
+                "max_diff": {
+                    "default": null,
+                    "annotation": "<class 'int'>"
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_autobalance_threshold"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_broadcast",
+            "arguments": {
+                "message": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                }
+            },
+            "return_type": "<class 'str'>",
+            "doc_string": "Set the in game broadcast message and return the previous message if set",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_broadcast_message"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_camera_discord_webhooks_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_camera_discord_webhooks_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_camera_notification_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_camera_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_chat_commands_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_chat_commands_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_chat_discord_webhooks_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_chat_discord_webhooks_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_dynamic_weather_enabled",
+            "arguments": {
+                "map_name": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "enabled": {
+                    "default": null,
+                    "annotation": "<class 'bool'>"
+                }
+            },
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_set_dynamic_weather_enabled"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_expired_vip_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_expired_vip_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_game_layout",
+            "arguments": {
+                "objectives": {
+                    "default": null,
+                    "annotation": "typing.Sequence[str | int | None]"
+                },
+                "random_constraints": {
+                    "default": "0",
+                    "annotation": "<flag 'GameLayoutRandomConstraints'>"
+                }
+            },
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_game_layout"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_idle_autokick_time",
+            "arguments": {
+                "minutes": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_idle_autokick_time"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_kills_discord_webhooks_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_kills_discord_webhooks_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_log_line_webhook_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_log_line_discord_webhook_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_log_stream_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_log_stream_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_map",
+            "arguments": {
+                "map_name": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                }
+            },
+            "return_type": "None",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_current_map"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_map_rotation",
+            "arguments": {
+                "map_names": {
+                    "default": null,
+                    "annotation": "list[str]"
+                }
+            },
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_add_map_to_rotation",
+                "api.can_remove_map_from_rotation",
+                "api.can_view_map_rotation"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_map_shuffle_enabled",
+            "arguments": {
+                "enabled": {
+                    "default": null,
+                    "annotation": "<class 'bool'>"
+                }
+            },
+            "return_type": "None",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_map_shuffle_enabled"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_match_timer",
+            "arguments": {
+                "game_mode": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "length": {
+                    "default": null,
+                    "annotation": "<class 'int'>"
+                }
+            },
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_set_match_timer"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_max_ping_autokick",
+            "arguments": {
+                "max_ms": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_max_ping_autokick"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_name_kick_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_name_kick_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_profanities",
+            "arguments": {
+                "profanities": {
+                    "default": null,
+                    "annotation": "list[str]"
+                }
+            },
+            "return_type": "list[str]",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_ban_profanities",
+                "api.can_unban_profanities",
+                "api.can_view_profanities"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_queue_length",
+            "arguments": {
+                "value": {
+                    "default": null,
+                    "annotation": "<class 'int'>"
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_queue_length"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_rcon_chat_commands_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_rcon_chat_commands_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_rcon_connection_settings_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_rcon_connection_settings_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_rcon_server_settings_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_rcon_server_settings_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_real_vip_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_real_vip_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_scoreboard_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_scorebot_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_seed_vip_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_seed_vip_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_server_name",
+            "arguments": {
+                "name": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                }
+            },
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_server_name"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_server_name_change_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_server_name_change_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_standard_broadcast_messages",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_standard_broadcast_messages"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_standard_punishments_messages",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_standard_punishment_messages"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_standard_welcome_messages",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_standard_welcome_messages"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_steam_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_steam_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_team_switch_cooldown",
+            "arguments": {
+                "minutes": {
+                    "default": null,
+                    "annotation": "<class 'int'>"
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_team_switch_cooldown"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_tk_ban_on_connect_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_tk_ban_on_connect_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_vac_game_bans_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_vac_game_bans_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_vip_slots_num",
+            "arguments": {
+                "value": {
+                    "default": null,
+                    "annotation": "<class 'int'>"
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_vip_slots"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_votekick_autotoggle_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_votekick_autotoggle_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_votekick_enabled",
+            "arguments": {
+                "value": {
+                    "default": null,
+                    "annotation": "<class 'bool'>"
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_votekick_enabled"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_votekick_thresholds",
+            "arguments": {
+                "threshold_pairs": {
+                    "default": null,
+                    "annotation": "list[tuple[int, int]]"
+                }
+            },
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_votekick_threshold"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_votemap_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_votemap_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_votemap_whitelist",
+            "arguments": {
+                "map_names": {
+                    "default": null,
+                    "annotation": "typing.Iterable[str]"
+                }
+            },
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_set_map_whitelist"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_warmup_timer",
+            "arguments": {
+                "game_mode": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "length": {
+                    "default": null,
+                    "annotation": "<class 'int'>"
+                }
+            },
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_set_warmup_timer"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_watch_killrate_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_watch_killrate_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_watchlist_discord_webhooks_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_watchlist_discord_webhooks_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "set_welcome_message",
+            "arguments": {
+                "message": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                }
+            },
+            "return_type": "<class 'str'>",
+            "doc_string": "Set the in game welcome (rules) message and return the previous message if set",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_welcome_message"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "switch_player_now",
+            "arguments": {
+                "player_id": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_switch_players_immediately"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "switch_player_on_death",
+            "arguments": {
+                "player_id": {
+                    "default": null,
+                    "annotation": null
+                },
+                "by": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_switch_players_on_death"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "temp_ban",
+            "arguments": {
+                "player_id": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "duration_hours": {
+                    "default": "2",
+                    "annotation": "<class 'int'>"
+                },
+                "reason": {
+                    "default": "",
+                    "annotation": "<class 'str'>"
+                },
+                "by": {
+                    "default": "",
+                    "annotation": "<class 'str'>"
+                },
+                "player_name": {
+                    "default": "None",
+                    "annotation": "str | None"
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_temp_ban_players"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "unban",
+            "arguments": {
+                "player_id": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": "Remove all temporary and permanent bans from the player_id.\n\nThis does not remove any blacklists, meaning the player may be immediately banned\nagain. To remove any bans or blacklists, use `unblacklist_player` instead.\n\nArgs:\n    player_id: steam_id_64 or windows store ID",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_remove_perma_bans",
+                "api.can_remove_temp_bans"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "unban_profanities",
+            "arguments": {
+                "profanities": {
+                    "default": null,
+                    "annotation": "list[str]"
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_unban_profanities"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "unblacklist_player",
+            "arguments": {
+                "player_id": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": "Expires all blacklists of a player and unbans them from all servers.\n\nArgs:\n    player_id: steam_id_64 or windows store ID",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_delete_blacklist_records",
+                "api.can_remove_perma_bans",
+                "api.can_remove_temp_bans"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "unflag_player",
+            "arguments": {
+                "flag_id": {
+                    "default": "None",
+                    "annotation": "int | None"
+                },
+                "player_id": {
+                    "default": "None",
+                    "annotation": "str | None"
+                },
+                "flag": {
+                    "default": "None",
+                    "annotation": "str | None"
+                }
+            },
+            "return_type": "<class 'rcon.types.PlayerFlagType'>",
+            "doc_string": "Flags can be removed either by flag_id (database key) or by passing a player ID and flag\n\nArgs:\n    flag_id: The database primary key of the flag record to delete\n    player_id: steam_id_64 or windows store ID\n    flag: The flag to remove from `player_id` if present",
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_unflag_player"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "unwatch_player",
+            "arguments": {
+                "player_id": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_remove_player_watch"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "upload_vips",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [
+                "api.can_upload_vip_list"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "upload_vips_result",
+            "arguments": {},
+            "return_type": null,
+            "doc_string": null,
+            "auto_settings_capable": false,
+            "permissions_required": [
+                "api.can_upload_vip_list"
+            ],
+            "allowed_http_methods": [
+                "GET"
+            ]
+        },
+        {
+            "endpoint": "validate_admin_pings_discord_webhooks_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_admin_pings_discord_webhooks_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "validate_audit_discord_webhooks_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_audit_discord_webhooks_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "validate_auto_broadcasts_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_auto_broadcast_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "validate_auto_mod_level_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_auto_mod_level_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "validate_auto_mod_no_leader_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_auto_mod_no_leader_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "validate_auto_mod_seeding_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_auto_mod_seeding_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "validate_auto_mod_solo_tank_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_auto_mod_solo_tank_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "validate_camera_discord_webhooks_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_camera_discord_webhooks_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "validate_camera_notification_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_camera_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "validate_chat_commands_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_chat_commands_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "validate_chat_discord_webhooks_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_chat_discord_webhooks_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "validate_expired_vip_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_expired_vip_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "validate_kills_discord_webhooks_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_kills_discord_webhooks_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "validate_log_line_webhook_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_log_line_discord_webhook_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "validate_log_stream_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_log_stream_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "validate_name_kick_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_name_kick_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "validate_rcon_chat_commands_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_rcon_chat_commands_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "validate_rcon_connection_settings_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_rcon_connection_settings_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "validate_rcon_server_settings_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_rcon_server_settings_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "validate_real_vip_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_real_vip_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "validate_scoreboard_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_scorebot_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "validate_seed_vip_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_seed_vip_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "validate_server_name_change_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_server_name_change_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "validate_standard_broadcast_messages",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_standard_broadcast_messages"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "validate_standard_punishments_messages",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_standard_punishment_messages"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "validate_standard_welcome_messages",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_standard_welcome_messages"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "validate_steam_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_steam_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "validate_tk_ban_on_connect_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_tk_ban_on_connect_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "validate_vac_game_bans_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_vac_game_bans_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "validate_votekick_autotoggle_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_votekick_autotoggle_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "validate_votemap_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_votemap_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "validate_watch_killrate_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_watch_killrate_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "validate_watchlist_discord_webhooks_config",
+            "arguments": {
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "config": {
+                    "default": "None",
+                    "annotation": "dict[str, typing.Any] | rcon.user_config.utils.BaseUserConfig | None"
+                },
+                "reset_to_default": {
+                    "default": "False",
+                    "annotation": "<class 'bool'>"
+                },
+                "kwargs": {
+                    "default": null,
+                    "annotation": null
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_change_watchlist_discord_webhooks_config"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        },
+        {
+            "endpoint": "watch_player",
+            "arguments": {
+                "player_id": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "reason": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "by": {
+                    "default": null,
+                    "annotation": "<class 'str'>"
+                },
+                "player_name": {
+                    "default": "None",
+                    "annotation": "str | None"
+                }
+            },
+            "return_type": "<class 'bool'>",
+            "doc_string": null,
+            "auto_settings_capable": true,
+            "permissions_required": [
+                "api.can_add_player_watch"
+            ],
+            "allowed_http_methods": [
+                "POST"
+            ]
+        }
+    ],
+    "command": "get_api_documentation",
+    "arguments": null,
+    "failed": false,
+    "error": null,
+    "forwards_results": null,
+    "version": "v11.6.1"
+}

@@ -29,6 +29,7 @@ logs/
 match_reports/
 match_data/
 backups/
+node_modules/
 
 # IDE
 .vscode/
