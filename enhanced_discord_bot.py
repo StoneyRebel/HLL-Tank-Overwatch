@@ -584,6 +584,13 @@ class ClockState:
             self._process_team_scores(detailed_players.get('allied', []), 'allied')
             self._process_team_scores(detailed_players.get('axis', []), 'axis')
 
+        # Log summary of what was found
+        for team in ['allied', 'axis']:
+            squads = self.player_scores.get(team, {})
+            total_players = sum(len(players) for players in squads.values())
+            total_combat = sum(sum(p['combat_score'] for p in players) for players in squads.values())
+            logger.info(f"Player scores [{team}]: {len(squads)} squads, {total_players} players, total combat={total_combat}")
+
     def _process_team_scores(self, team_data, team_key):
         """Process individual team's player scores"""
         # Handle list of players directly
@@ -626,7 +633,13 @@ class ClockState:
             return
 
         player_name = player_data.get('player', player_data.get('name', 'Unknown'))
-        combat_score = player_data.get('combat', player_data.get('combat_score', 0))
+
+        # Case-insensitive lookup for combat score
+        combat_score = 0
+        for key in player_data:
+            if key.lower() in ['combat', 'combat_score', 'combatscore']:
+                combat_score = player_data[key]
+                break
 
         # Normalize squad name to lowercase for case-insensitive matching
         squad_name_lower = squad_name.lower() if squad_name else 'unknown'
@@ -645,35 +658,31 @@ class ClockState:
         if not self.tournament_mode:
             return 0
 
-        # Get squad configuration for this team
-        squad_config = self.squad_config.get(team_key, {})
         player_scores = self.player_scores.get(team_key, {})
 
-        # Calculate combat score: 3 × (Crew1 High + Crew2 High + Crew3 High + Crew4 High)
+        # Calculate combat score: 3 × (sum of highest scorer from EACH squad)
+        # Count ALL squads, not just configured ones
         crew_scores = []
-        for crew_num in range(1, 5):
-            crew_key = f'crew{crew_num}'
-            squad_name = squad_config.get(crew_key, '')
+        commander_score = 0
 
-            # Get all players in this squad (case-insensitive lookup)
-            squad_name_lower = squad_name.lower() if squad_name else ''
-            squad_players = player_scores.get(squad_name_lower, [])
+        for squad_name, squad_players in player_scores.items():
+            if not squad_players:
+                continue
 
-            if squad_players:
-                # Find highest combat score in this crew
-                highest_score = max(p['combat_score'] for p in squad_players)
-                crew_scores.append(highest_score)
+            # Find highest combat score in this squad
+            highest_score = max(p['combat_score'] for p in squad_players)
+
+            # Check if this is a commander squad (usually 'command' or 'commander')
+            if squad_name.lower() in ['command', 'commander', 'cmd']:
+                commander_score = highest_score
             else:
-                crew_scores.append(0)
+                crew_scores.append(highest_score)
 
-        # Get commander score (case-insensitive lookup)
-        commander_squad = squad_config.get('commander', '')
-        commander_squad_lower = commander_squad.lower() if commander_squad else ''
-        commander_players = player_scores.get(commander_squad_lower, [])
-        commander_score = max((p['combat_score'] for p in commander_players), default=0)
-
-        # Calculate combat total
+        # Calculate combat total: 3 × (sum of all squad highs) + commander
         combat_total = 3 * sum(crew_scores) + commander_score
+
+        # Debug logging to help diagnose score issues
+        logger.debug(f"DMT Calc [{team_key}]: {len(crew_scores)} squads found, highs={crew_scores}, commander={commander_score}, combat_total={combat_total}")
 
         # Calculate cap score (time in seconds × 0.5)
         cap_seconds = self.total_time('A' if team_key == 'allied' else 'B')
