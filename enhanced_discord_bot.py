@@ -195,6 +195,12 @@ class HLLRconV2Client:
             sess_resp = await self.command('GetServerInformation', {"Name": "session", "Value": ""})
             session   = self._parse_body(sess_resp.get('contentBody', {}))
 
+            # The session tells us which faction index = allied and which = axis.
+            # This is dynamic per map — do NOT hardcode 1=allied/2=axis.
+            allied_faction = int(session.get('alliedFaction', 1))
+            axis_faction   = int(session.get('axisFaction',   0))
+            logger.info(f"Faction map: alliedFaction={allied_faction}, axisFaction={axis_faction}")
+
             # Player list
             pl_resp  = await self.command('GetServerInformation', {"Name": "players", "Value": ""})
             pl_body  = self._parse_body(pl_resp.get('contentBody', {}))
@@ -211,9 +217,16 @@ class HLLRconV2Client:
                 try:
                     pr   = await self.command('GetServerInformation', {"Name": "player", "Value": pid})
                     body = self._parse_body(pr.get('contentBody', {}))
-                    team_int = body.get('team', 0)
-                    team = 'allies' if team_int == 1 else ('axis' if team_int == 2 else '')
-                    score_data = body.get('scoreData', {}) or {}
+                    # Field may be 'Team' or 'team' — check both (RCON V2 docs show capital T)
+                    team_int = body.get('Team', body.get('team', -1))
+                    if team_int == allied_faction:
+                        team = 'allies'
+                    elif team_int == axis_faction:
+                        team = 'axis'
+                    else:
+                        team = ''
+                    logger.info(f"Player {p.get('name')}: team_int={team_int} -> {team!r}")
+                    score_data = body.get('scoreData', body.get('ScoreData', {})) or {}
                     if isinstance(score_data, str):
                         try: score_data = json.loads(score_data)
                         except: score_data = {}
@@ -227,11 +240,11 @@ class HLLRconV2Client:
                         'name':    p.get('name', ''),
                         'id':      pid,
                         'team':    team,
-                        'platoon': body.get('platoon', '') or '',
+                        'platoon': body.get('Platoon', body.get('platoon', '')) or '',
                         'combat':  combat,
                     })
                 except Exception as e:
-                    logger.debug(f"Player detail error {p.get('name')}: {e}")
+                    logger.warning(f"Player detail error {p.get('name')}: {e}")
 
             return {
                 'allied_score':   int(session.get('alliedScore',       0)),
